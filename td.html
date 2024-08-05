@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nutrition Calculator</title>
+</head>
+
+<body>
+    <div style="display: grid;grid-template-columns: auto auto;">
+        <div style="border: 1px solid black;border-radius: 10px;background-color: aquamarine;margin-left: 20%;padding: 40px;">
+            <textarea name="disp" id="disp" style="height: 6cm;width: 70%;font-size: 20px;margin-left: 15%"></textarea>
+            <br>
+            <br>
+            <center>
+                <div style="padding-left: 25px;">
+                    <input type="text" id="ing" name="ing" style="border-radius: 10px;padding: 15px;font-size: larger;"
+                        placeholder="Enter Ingredients">
+                    <input type="text" id="serve" name="serve"
+                        style="border-radius: 10px;padding: 15px;font-size: larger;" placeholder="Enter Quantity">
+
+                    <button type="button" onclick="add()"
+                        style="padding: 15px;border-radius: 10px;font-size: larger;margin-top: 30px;">Add</button>
+                    <button type="button"
+                        onclick="remove()"
+                        style="padding: 15px;border-radius: 10px;font-size: larger;">Remove</button>
+                </div>
+            </center>
+            <br>
+            <br>
+            <center>
+                <input type="text" id="ving" name="ving" style="padding: 15px;border-radius: 10px;font-size: larger;"
+                    placeholder="Enter Servings">
+            </center>
+            <br>
+            <br>
+            <center>
+                <button type="button" onclick="ok()"
+                    style="padding: 15px;border-radius: 10px;font-size: larger;">Analyse
+                    recipe</button>
+            </center>
+        </div>
+        <script>
+            let tcalo = 0;
+            let tcarb = 0;
+            let tfat = 0;
+            let tvita = 0;
+            let tcal = 0;
+            let tiron = 0;
+            let tpot = 0;
+            let tsod = 0;
+            let tpro = 0;
+            function ingre(calo, carbs, fat, vita, cal, pot, iron, sod, pro) {
+                    this.calo = cal;
+                    this.carbs = carbs;
+                    this.fat = fat;
+                    this.vita = vita;
+                    this.cal = cal;
+                    this.pot = pot;
+                    this.iron = iron;
+                    this.sod = sod;
+                    this.pro = pro;
+                }
+                const carrot = new ingre(41, 2, 0, 0.23, 0.033, 0.003, 0.02, 1, 2.9);
+                    const beet = new ingre(16, 0, 0, 0.23, 0.014, 0.005, 0.03, 1, 1.2);
+                    const chick = new ingre(200, 0, 14, 10, 0.001, 0.011, 0.02, 3, 27);
+                    const spi = new ingre(23, 0, 0, 0.20, 0.014, 0.005, 0.05, 1, 2.9);
+            function add() {
+                const el = document.getElementById("ing");
+                const el1 = document.getElementById("serve");
+                
+                
+                const serv = document.getElementById("serve").value;
+                //(calo,carbs,fat,vita,cal,pot,iron,sod,pro)
+                
+                if (el.value == 'carrot') {
+                    tcalo += el1.value * carrot.calo;
+                    tcarb += el1.value * carrot.carbs;
+                    tfat += el1.value * carrot.fat;
+                    tvita += el1.value * carrot.vita;
+                    tcal += el1.value * carrot.cal;
+                    tiron += el1.value * carrot.iron;
+                    tpot += el1.value * carrot.pot;
+                    tsod += el1.value * carrot.sod;
+                    tpro += el1.value * carrot.pro;
+                    disp.value += el.value + '-' + el1.value + '\r\n';
+                }
+                else if (el.value == 'beetroot') {
+                    tcalo += el1.value * beet.calo;
+                    tcarb += el1.value * beet.carbs;
+                    tfat += el1.value * beet.fat;
+                    tvita += el1.value * beet.vita;
+                    tcal += el1.value * beet.cal;
+                    tiron += el1.value * beet.iron;
+                    tpot += el1.value * beet.pot;
+                    tsod += el1.value * beet.sod;
+                    tpro += el1.value * beet.pro;
+                    disp.value += el.value + '-' + el1.value + '\r\n';
+                }
+                else if (el.value == 'chicken') {
+                    tcalo += el1.value * chick.calo;
+                    tcarb += el1.value * chick.carbs;
+                    tfat += el1.value * chick.fat;
+                    tvita += el1.value * chick.vita;
+                    tcal += el1.value * chick.cal;
+                    tiron += el1.value * chick.iron;
+                    tpot += el1.value * chick.pot;
+                    tsod += el1.value * chick.sod;
+                    tpro += el1.value * chick.pro;
+                    disp.value += el.value + '-' + el1.value + '\r\n';
+                }
+                else if (el.value == 'spinach') {
+                    tcalo += el1.value * spi.calo;
+                    tcarb += el1.value * spi.carbs;
+                    tfat += el1.value * spi.fat;
+                    tvita += el1.value * spi.vita;
+                    tcal += el1.value * spi.cal;
+                    tiron += el1.value * spi.iron;
+                    tpot += el1.value * spi.pot;
+                    tsod += el1.value * spi.sod;
+                    tpro += el1.value * spi.pro;
+                    disp.value += el.value + '-' + el1.value + '\r\n';
+                }
+                else
+                {
+                    alert("Data not found");
+                    return;
+                }
+            }
+            function remove()
+            {   
+                const l1=document.getElementById("ing").value;
+                if(l1=="carrot")
+                {
+                    tcarb-=serve.value*carrot.carbs;
+                    tpro=0;
+                }
+                disp.value = disp.value.toString().slice(0, -(ing.value.length + serve.value.length + 3));
+            }
+            function ok() {
+                document.getElementById("ans").innerHTML = "Total Carbohydrates " + (tcarb / ving.value) + "g";
+                document.getElementById("fat").innerHTML = "Total Fat " + tfat / ving.value + "g";
+                document.getElementById("pot").innerHTML = "Potassium " + tpot / ving.value + "g";
+                document.getElementById("cal").innerHTML = "Calcium " + tcal / ving.value + "g";
+                document.getElementById("iro").innerHTML = "Iron " + tiron / ving.value + "g";
+                document.getElementById("vit").innerHTML = "Vitamin(overall) " + tvita / ving.value + "g";
+                document.getElementById("sod").innerHTML = "Sodium " + tsod / ving.value + "g";
+                document.getElementById("calo").innerHTML = "Calories: " + tcalo / ving.value + "kcals";
+                document.getElementById("ser").innerHTML = "Servings: " + ving.value;
+                document.getElementById("pr").innerHTML = "Protein " + tpro / ving.value + "g";
+            }
+        </script>
+        <div style="border: 3px solid black;margin-left: 25%;padding-left: 20px;padding-right: 20px;margin-right: 10%;">
+            <h1>Nutrition Facts</h1>
+            <p id="ser" style="font-weight: bolder;">Servings: </p>
+            <div style="background-color: gainsboro;height: 7px;width: 100%;"></div>
+            <p style="font-weight: bolder;">Amount per serving</p>
+            <div style="display: inline;">
+                <p style="font-size: 25px;font-weight: bolder;" id="calo">Calories: </p>
+            </div>
+            <div style="background-color: black;height: 2px;width: 100%;"></div>
+            <p id="fat">Total Fat</p>
+            <div style="background-color: black;height: 2px;width: 100%;"></div>
+            <p id="sod">Sodium</p>
+            <div style="background-color: black;height: 2px;width: 100%;"></div>
+            <p id="ans">Total Carbohydrates</p>
+            <div style="background-color: black;height: 2px;width: 100%;"></div>
+            <p id="pr">Protein</p>
+            <div style="background-color: gainsboro;height: 7px;width: 100%;"></div>
+            <p id="vit">Vitamin(overall)</p>
+            <div style="background-color: black;height: 1px;width: 100%;"></div>
+            <p id="cal">Calcium</p>
+            <div style="background-color: black;height: 1px;width: 100%;"></div>
+            <p id="iro">Iron</p>
+            <div style="background-color: black;height: 1px;width: 100%;"></div>
+            <p id="pot">Potassium</p>
+            <div style="background-color: black;height: 1px;width: 100%;"></div>
+            <p>*The % Daily Value (DV) tells you how much a nutrient in a food serving contributes to a daily diet.
+                2,000
+                calorie a day
+                is used for general nutrition advice.</p>
+        </div>
+    </div>
+</body>
+
+</html>
